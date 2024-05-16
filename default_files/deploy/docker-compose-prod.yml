@@ -11,9 +11,10 @@ services:
     depends_on:
       - db
     environment:
-      - "DJANGO_SECRET_KEY=bnTl0uTbgBqT0nNAQvaNwKAFZdmtFPLAebIQBxn40HaHYTG8ZmQ"
-      - "DJANGO_EMAIL_HOST_PASSWORD=fadu lcex ynym qksg"
-      - "DJANGO_EMAIL_HOST_USER=eliskrommer390@gmail.com"
+      # данные задать перед деплоем
+      - "DJANGO_SECRET_KEY="
+      - "DJANGO_EMAIL_HOST_PASSWORD="
+      - "DJANGO_EMAIL_HOST_USER="
   db:
     image: postgres:16
     volumes:
