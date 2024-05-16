@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    # command: python3 /code/manage.py runserver 0.0.0.0:8000
+    command: gunicorn config.wsgi -b 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    environment:
+      - "DJANGO_SECRET_KEY=bnTl0uTbgBqT0nNAQvaNwKAFZdmtFPLAebIQBxn40HaHYTG8ZmQ"
+      - "DJANGO_EMAIL_HOST_PASSWORD=fadu lcex ynym qksg"
+      - "DJANGO_EMAIL_HOST_USER=eliskrommer390@gmail.com"
+  db:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      # - "POSTGRES_HOST_AUTH_METHOD=trust"
+      - "POSTGRES_PASSWORD=postgres"
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_DB=postgres"
+volumes:
+  postgres_data:
+
+
