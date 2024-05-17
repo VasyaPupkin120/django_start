@@ -20,32 +20,23 @@ poetry add django-allauth=^0.61.1
 # poetry add django-debug-toolbar=^4.3.0
 
 django-admin startproject config .
-rm db.sqlite
 django-admin startapp users
 
 # копирование стандартных файлов
 # файлы докера
-cp ./default_files/deploy/Dockerfile ./Dockerfile
-cp ./default_files/deploy/docker-compose.yml ./docker-compose.yml
-mkdir deploy
-mkdir deploy/nginx
-mkdir deploy/db
-cp ./default_files/deploy/nginx/* ./deploy/nginx
-cp ./default_files/deploy/db/* ./deploy/db
+cp ./deploy/build/webapp/Dockerfile ./Dockerfile
+cp ./deploy/build/webapp/docker-compose.yml ./docker-compose.yml
 
-# настройки всего проекта
+# настройки django-приложения
 mv ./config/settings.py ./config/settings.py.old
-cp ./default_files/config/settings.py ./config/settings.py
+cp ./deploy/conf/webapp/settings.py ./config/settings.py
 
 # файлы модели users
 rm ./users/admin.py
 rm ./users/models.py
-cp ./default_files/users/admin.py ./users/admin.py
-cp ./default_files/users/forms.py ./users/forms.py
-cp ./default_files/users/models.py ./users/models.py
-
-# удаление стандартных файлов
-rm -r ./default_files/
+cp ./deploy/conf/webapp/users/admin.py ./users/admin.py
+cp ./deploy/conf/webapp/users/forms.py ./users/forms.py
+cp ./deploy/conf/webapp/users/models.py ./users/models.py
 
 docker-compose up --build
 
