@@ -1,8 +1,9 @@
+# конфиг для локальной разработки
 version: "3"
 
 services:
+  # python + poetry + gunicorn + psycopg2-binary + environs[django] + django + сайт
   webapp:
-    # python + poetry + gunicorn + psycopg2-binary + environs[django] + django + сайт
     # установка сначала в локальное окружение на хосте с помощью скрипта, 
     #потом установка в контейнер на основе poetry.lock-файла
     build: .
@@ -10,11 +11,9 @@ services:
       - db
     volumes:
       - .:/code
-    # env_file: .env
     environment:
       - "DJANGO_SECRET_KEY=django-insecure-t#lsan$$1-a@ci)o2bimd1yez5_9#nau+@nh$$hw%ugaw+oc5^g_"
       - "DJANGO_DEBUG=True"
-      # - DJANGO_DEBUG=$DJANGO_DEBUG - просто образец для варианта использования .env файла
       - "DJANGO_SECURE_SSL_REDIRECT=False"
       - "DJANGO_SECURE_HSTS_SECONDS=0"
       - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False"
@@ -22,7 +21,6 @@ services:
       - "DJANGO_SESSION_COOKIE_SECURE=False"
       - "DJANGO_CSRF_COOKIE_SECURE=False"
     command: python3 /code/manage.py runserver 0.0.0.0:8000
-    # command: gunicorn config.wsgi -b 0.0.0.0:8000
   db:
     build: './deploy/build/db'
     # том создавать и монтировать только на проекте, 

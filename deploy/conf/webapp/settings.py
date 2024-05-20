@@ -40,6 +40,9 @@ CSRF_COOKIE_SECURE = env.bool("DJANGO_CSRF_COOKIE_SECURE", default=True)
 DEBUG = env.bool("DJANGO_DEBUG", False)
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'webapp']
 
+# для добавления локалхоста в список доверенных хостов
+# чтобы посредник csrf не ругался. Добавлять также домен или ip того хоста, на котором будет крутиться сайт
+CSRF_TRUSTED_ORIGINS=["http://127.0.0.1", "https://127.0.0.1", ]
 
 # Application definition
 

@@ -1,4 +1,6 @@
 #!/bin/bash
+git init
+cp ./deploy/base.gitignore ./.gitignore
 
 touch README.md
 
@@ -23,9 +25,12 @@ django-admin startproject config .
 django-admin startapp users
 
 # копирование стандартных файлов
-# файлы докера
+# файлы докера для локальной разработки
 cp ./deploy/build/webapp/Dockerfile ./Dockerfile
 cp ./deploy/build/webapp/docker-compose.yml ./docker-compose.yml
+
+# файл докера для разверывания на проде
+cp ./deploy/prod/docker-compose.prod.yml ./docker-compose.prod.yml
 
 # настройки django-приложения
 mv ./config/settings.py ./config/settings.py.old

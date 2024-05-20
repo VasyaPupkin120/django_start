@@ -5,6 +5,9 @@
     docker-compose exec web python3 manage.py makemirations
     docker-compose exec web python3 manage.py migrate
 
+Переменные окружения задаются в файлах docker-compose.yml, секретный ключ для docker-compose.yml необходимо сгенерировать для каждого нового проекта.
+
+В .ginignore проекта сайта должен быт указан запрет на директорию ./deploy/prod и файл ./docker-compose.prod.env - чтобы не закинуть их случайно на гитхаб.
 
 
 
