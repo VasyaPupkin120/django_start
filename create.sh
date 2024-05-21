@@ -30,7 +30,7 @@ cp ./deploy/build/webapp/Dockerfile ./Dockerfile
 cp ./deploy/build/webapp/docker-compose.yml ./docker-compose.yml
 
 # файл докера для разверывания на проде
-cp ./deploy/prod/docker-compose.prod.yml ./docker-compose.prod.yml
+cp ./deploy/prod/docker-compose-prod.yml ./docker-compose-prod.yml
 
 # настройки django-приложения
 mv ./config/settings.py ./config/settings.py.old
@@ -42,8 +42,6 @@ rm ./users/models.py
 cp ./deploy/conf/webapp/users/admin.py ./users/admin.py
 cp ./deploy/conf/webapp/users/forms.py ./users/forms.py
 cp ./deploy/conf/webapp/users/models.py ./users/models.py
-
-docker-compose up --build
 
 # удаление самого скрипта
 rm ./create.sh

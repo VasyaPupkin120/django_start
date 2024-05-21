@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 services:
   # python + poetry + gunicorn + psycopg2-binary + environs[django] + django + сайт
   webapp:
@@ -10,6 +10,7 @@ services:
     environment:
       - "DJANGO_SECRET_KEY=remove_this_code_and_pass_new"
       - "DJANGO_DEBUG=False"
+      - "CSRF_TRUSTED_HOSTS=127.0.0.1,localhost,11.111.11.111"
       # - "DJANGO_SECURE_SSL_REDIRECT="
       # - "DJANGO_SECURE_HSTS_SECONDS="
       # - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS="
